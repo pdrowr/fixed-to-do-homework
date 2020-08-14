@@ -1,0 +1,34 @@
+.jumbotron
+  %h1 Projects
+  %p.lead This is a list of all your projects
+  %hr.my-4
+  %p You can create, edit or destroy them here.
+
+  = link_to new_project_path do
+    .btn.btn-primary.btn-sm New Project
+
+%table.table
+  %thead
+    %tr
+      %th{ scope: 'col' } #
+      %th{ scope: 'col' } Name
+      %th{ scope: 'col' } Items
+      %th{ scope: 'col' } Actions
+  %tbody
+    - @projects.each_with_index do |project, index|
+      %tr
+        %th{ scope: 'row' }= index + 1
+        %td= project.title
+        %td= project.items.size
+        %td
+          = link_to project_path(project) do
+            .btn.btn-primary.btn-sm
+              %i.fa.fa-eye
+
+          = link_to edit_project_path(project) do
+            .btn.btn-primary.btn-sm
+              %i.fa.fa-pencil
+
+          = link_to project_path(project), method: :delete, data: { confirm: 'Are you sure?' } do
+            .btn.btn-danger.btn-sm
+              %i.fa.fa-trash

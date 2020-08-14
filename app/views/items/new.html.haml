@@ -1,0 +1,16 @@
+.jumbotron
+  %h1= @project.title
+  %p.lead This is a form to create a new item for your project
+  %hr.my-4
+
+  = link_to project_path(@project) do
+    .btn.btn-primary.btn-sm Back
+
+= form_for([@project, @item]) do |f|
+  .field
+    .form-group
+      = f.label :action
+      = f.text_field :action, size: '80', class: 'form-control'
+
+  .actions
+    = f.submit 'SAVE', class: 'btn btn-primary btn-sm'

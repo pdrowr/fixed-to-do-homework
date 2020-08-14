@@ -1,0 +1,12 @@
+.jumbotron
+  %h1= @project.title
+  %p.lead This is a detail of your project
+  %hr.my-4
+  %p You can see here your project's items
+
+  = link_to new_project_item_path(@project, @item) do
+    .btn.btn-primary.btn-sm New Item
+  = link_to clear_project_path(@project), method: :delete, id: 'clearer' do
+    .btn.btn-primary.btn-sm Clear completed items
+
+= render partial: 'items/index', locals: { project: @project }

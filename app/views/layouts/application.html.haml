@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %meta{ content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }
+    %title BrokenTodoHomework
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{ crossorigin: 'anonymous', href: 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', integrity: 'sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN', rel: 'stylesheet' }
+  %body#main
+    = render 'partials/navbar'
+    - flash.each do |type, msg|
+      .alert.alert-info{ role: 'alert' }
+        = msg
+
+    .container-fluid.mt-2
+      = yield

@@ -1,0 +1,20 @@
+%table.table
+  %thead
+    %tr
+      %th{ scope: 'col' } #
+      %th{ scope: 'col' } Action
+      %th{ scope: 'col' } Done
+      %th{ scope: 'col' } Actions
+  %tbody
+    - @project.items.each_with_index do |item, index|
+      - if item.valid?
+        %tr{ class: item.done? ? 'table-success' : '' }
+          %th{ scope: 'row' }= index + 1
+          %td= item.action
+          %td
+            - unless item.done?
+              = button_to 'Done', { controller: :items, action: :update, id: item.id, project_id: @project.id, item: { done: true } }, { method: :patch, class: 'btn btn-primary btn-sm' }
+          %td
+            = link_to edit_project_item_path(project, item) do
+              .btn.btn-primary.btn-sm
+                %i.fa.fa-pencil

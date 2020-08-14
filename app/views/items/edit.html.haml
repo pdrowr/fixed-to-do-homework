@@ -1,0 +1,26 @@
+.jumbotron
+  %h1 Items
+  %p.lead This is a for to edit your item
+
+  = link_to project_path(@project) do
+    .btn.btn-primary.btn-sm Back
+
+= form_for([@project, @item], :url => { :action => :update }) do |f|
+  - if @item.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@item.errors.count, 'error')
+        prohibited this project from being saved:
+      %ul
+        - @item.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    .form-group
+      = f.label :action
+      = f.text_field :action, size: '80', class: 'form-group'
+  .field
+    .form-group
+      = f.label :done, 'Done?'
+      = f.check_box :done, class: 'form-group'
+  .actions
+    = f.submit 'UPDATE', class: 'btn btn-primary'
